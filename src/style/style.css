@@ -162,6 +162,11 @@ ul {
     border-left: 3px solid transparent;
 }
 
+.nav__item:hover {
+    background-color: #34495e;
+    cursor: pointer;
+}
+
 .nav__item.active {
     background-color: #34495e;
     border-left-color: #3498db;
