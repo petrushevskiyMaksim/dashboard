@@ -52,6 +52,10 @@ ul {
     padding: 0;
 }
 
+label {
+    cursor: pointer;
+}
+
 .open-aside-btn.hidden,
 .hidden {
     display: none;
@@ -243,6 +247,10 @@ thead {
     color: #fff;
 }
 
+tbody {
+    color: #000;
+}
+
 th,
 td {
     padding: 15px;
@@ -320,3 +328,105 @@ th.sortable:hover .sort-icon {
     color: #e74c3c;
     font-weight: 600;
 }
+
+/* ADD PROJECT PANEL ===================================================================================== */
+
+.add-project-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+
+    width: 350px;
+    height: 100%;
+    padding: 20px;
+
+    color: #34495e;
+    background-color: #fff;
+    box-shadow: -2px 0 10px #0000001a;
+    overflow-y: auto;
+    transform: translate(100%);
+    visibility: hidden;
+    opacity: 0;
+    transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+    -webkit-transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+    -moz-transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+    -ms-transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+    -o-transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+}
+
+.add-project-panel.open {
+    transform: translate(0);
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translate(0);
+    -moz-transform: translate(0);
+    -ms-transform: translate(0);
+    -o-transform: translate(0);
+}
+
+.add-project-panel h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #bdc3c7;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.add-employee-form label,
+.add-project-form label {
+    display: block;
+    margin-top: 15px;
+    color: #34495e;
+}
+
+.add-employee-form input,
+.add-employee-form select,
+.add-project-form input,
+.add-project-form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.add-employee-form input:focus,
+.add-employee-form select:focus,
+.add-project-form input:focus,
+.add-project-form select:focus {
+    outline: none;
+}
+
+.add-employee-form input::placeholder,
+.add-project-form input::placeholder {
+    opacity: 0.5;
+}
+
+.error-message {
+    display: block;
+    height: 14px;
+    color: #e74c3c;
+    font-size: 0.85em;
+    opacity: 0;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: end;
+    margin-top: 25px;
+    margin-left: auto;
+}
+
+.form-buttons button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: rgba(239, 239, 239);
+    border-radius: 5px;
+}
+
+.form-buttons button:disabled {
+    opacity: 0.3;
+    cursor: auto;
+}
+
