@@ -186,6 +186,7 @@ label {
 .main {
     flex-grow: 1;
     padding: 40px;
+    overflow-y: auto;
 }
 
 .main h1 {
@@ -235,6 +236,8 @@ label {
     min-height: 30px;
 }
 
+/* Table ===================================================================================== */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -247,8 +250,38 @@ thead {
     color: #fff;
 }
 
+/* Table Body ===================================================================================== */
+
+.delete-btn,
+.unassign-action-btn {
+    background-color: rgb(231, 76, 60);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 0.9em;
+    border-width: medium;
+    border-style: none;
+    border-color: currentcolor;
+    border-image: initial;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover,
+.unassign-action-btn:hover {
+    background-color: rgb(192, 57, 43);
+}
+
 tbody {
     color: #000;
+}
+
+tbody tr:hover {
+    background-color: rgb(232, 244, 248);
+}
+
+td {
+    line-height: 1.8;
 }
 
 th,
@@ -429,4 +462,3 @@ th.sortable:hover .sort-icon {
     opacity: 0.3;
     cursor: auto;
 }
-
