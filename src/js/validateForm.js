@@ -105,40 +105,71 @@ export const validateFormFromChange = (form) => {
         const field = e.target;
         const fieldName = field.name;
         const fieldValue = field.value;
-        addBtnForm.disabled = true;
 
         const error = validateField(fieldName, fieldValue, field);
-
-        if (!error) {
-            addBtnForm.disabled = false;
-        }
-
         showError(fieldName, error);
+
+        updateButtonState(form);
     });
 };
 
 export const validateFormFromSubmit = (form) => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        let isValid = true;
+
+        if (!isFormValid(form)) {
+            updateButtonState(form);
+            return;
+        }
+
         const formData = new FormData(form);
+        saveProjectToLocalStorage(Object.fromEntries(formData));
+        form.reset();
+        updateButtonState(form);
+        closePanel();
+        // let isValid = true;
+        // const formData = new FormData(form);
 
-        for (const [name, value] of formData.entries()) {
-            const field = document.querySelector(`.${name}`);
-            const error = validateField(name, value, field);
+        // for (const [name, value] of formData.entries()) {
+        //     const field = document.querySelector(`.${name}`);
+        //     const error = validateField(name, value, field);
 
-            if (error) {
-                showError(name, error);
-                isValid = false;
-            } else {
-                showError(name, null);
-            }
-        }
+        //     if (error) {
+        //         showError(name, error);
+        //         isValid = false;
+        //     } else {
+        //         showError(name, null);
+        //     }
+        // }
 
-        if (isValid) {
-            saveProjectToLocalStorage(Object.fromEntries(formData));
-            form.reset();
-            closePanel();
-        }
+        // if (isValid) {
+        //     saveProjectToLocalStorage(Object.fromEntries(formData));
+        //     form.reset();
+        //     closePanel();
+        // }
+
+        // updateButtonState(form);
     });
 };
+
+function isFormValid(form) {
+    const formData = new FormData(form);
+    let isValid = true;
+
+    for (const [name, value] of formData.entries()) {
+        const field = document.querySelector(`.${name}`);
+        const error = validateField(name, value, field);
+
+        if (error) {
+            isValid = false;
+            break;
+        }
+    }
+
+    return isValid;
+}
+
+export function updateButtonState(form) {
+    const isValid = isFormValid(form);
+    addBtnForm.disabled = !isValid;
+}
