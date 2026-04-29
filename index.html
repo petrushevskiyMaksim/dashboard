@@ -226,8 +226,71 @@
                 >
 
                 <div class="form-buttons">
-                    <button class="add-project-btn-form" type="submit">Add</button>
-                    <button class="cancel-project-btn-form" type="button">Cancel</button>
+                    <button class="add-project-btn-form form-add-btn" type="submit">Add</button>
+                    <button class="cancel-project-btn-form form-cancel-btn" type="button">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </section>
+        <section class="add-employee-panel">
+            <h2>Add New Employee</h2>
+            <form class="add-project-form">
+                <label for="employee-name" title="Employee Name"
+                    >Employee Name:
+                    <input
+                        class="employee-name"
+                        id="employee-name"
+                        name="employee-name"
+                        type="text"
+                        minlength="3"
+                        maxlength="45"
+                        pattern="[A-Za-z\s]+"
+                        placeholder="Employee Name"
+                        required />
+                </label>
+
+                <span class="error-message project-error-employee-name"
+                    >Project Name must be at least 3 characters</span
+                >
+                <label for="employee-surname" title="Employee Surname"
+                    >Employee Surname:
+                    <input
+                        class="employee-surname"
+                        id="employee-surname"
+                        name="employee-surname"
+                        type="text"
+                        minlength="3"
+                        maxlength="30"
+                        pattern="[A-Za-z\s]+"
+                        placeholder="Employee Surname"
+                        required
+                /></label>
+
+                <span class="error-message project-error-employee-surname"
+                    >Company name must be at least 2 characters</span
+                >
+                <label for="salary" title="Salary"
+                    >Salary:<input
+                        class="salary"
+                        id="salary"
+                        name="salary"
+                        type="number"
+                        min="100"
+                        step="1"
+                        placeholder="Salary"
+                        required
+                /></label>
+
+                <span class="error-message project-error-salary"
+                    >Budget must be greater than 0</span
+                >
+
+                <div class="form-buttons">
+                    <button class="add-employee-btn-form form-add-btn" type="submit">Add</button>
+                    <button class="cancel-employee-btn-form form-cancel-btn" type="button">
+                        Cancel
+                    </button>
                 </div>
             </form>
         </section>

@@ -1,7 +1,7 @@
 import { closePanel } from './panelControl';
 import { saveProjectToLocalStorage } from './localStorage';
 
-const addBtnForm = document.querySelector('.add-project-btn-form');
+const addProjectBtn = document.querySelector('.form-add-btn');
 
 function validateField(name, value, field) {
     if (name === 'project-name') {
@@ -127,28 +127,6 @@ export const validateFormFromSubmit = (form) => {
         form.reset();
         updateButtonState(form);
         closePanel();
-        // let isValid = true;
-        // const formData = new FormData(form);
-
-        // for (const [name, value] of formData.entries()) {
-        //     const field = document.querySelector(`.${name}`);
-        //     const error = validateField(name, value, field);
-
-        //     if (error) {
-        //         showError(name, error);
-        //         isValid = false;
-        //     } else {
-        //         showError(name, null);
-        //     }
-        // }
-
-        // if (isValid) {
-        //     saveProjectToLocalStorage(Object.fromEntries(formData));
-        //     form.reset();
-        //     closePanel();
-        // }
-
-        // updateButtonState(form);
     });
 };
 
@@ -158,6 +136,7 @@ function isFormValid(form) {
 
     for (const [name, value] of formData.entries()) {
         const field = document.querySelector(`.${name}`);
+
         const error = validateField(name, value, field);
 
         if (error) {
@@ -171,5 +150,5 @@ function isFormValid(form) {
 
 export function updateButtonState(form) {
     const isValid = isFormValid(form);
-    addBtnForm.disabled = !isValid;
+    addProjectBtn.disabled = !isValid;
 }

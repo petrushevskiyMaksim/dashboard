@@ -364,7 +364,8 @@ th.sortable:hover .sort-icon {
 
 /* ADD PROJECT PANEL ===================================================================================== */
 
-.add-project-panel {
+.add-project-panel,
+.add-employee-panel {
     position: fixed;
     top: 0;
     right: 0;
@@ -388,7 +389,8 @@ th.sortable:hover .sort-icon {
     -o-transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
 }
 
-.add-project-panel.open {
+.add-project-panel.open,
+.add-employee-panel.open {
     transform: translate(0);
     visibility: visible;
     opacity: 1;
@@ -398,7 +400,8 @@ th.sortable:hover .sort-icon {
     -o-transform: translate(0);
 }
 
-.add-project-panel h2 {
+.add-project-panel h2,
+.add-employee-panel h2 {
     color: #2c3e50;
     border-bottom: 2px solid #bdc3c7;
     padding-bottom: 10px;
