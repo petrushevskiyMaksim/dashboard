@@ -465,3 +465,8 @@ th.sortable:hover .sort-icon {
     opacity: 0.3;
     cursor: auto;
 }
+
+/* Employee panel ================================ */
+.editable-position {
+    text-transform: capitalize;
+}
