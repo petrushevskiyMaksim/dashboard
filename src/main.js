@@ -6,26 +6,35 @@ import { initDate } from './js/period';
 import { panelControl } from './js/panelControl';
 import {
     updateButtonState,
-    validateFormFromChange,
-    validateFormFromSubmit,
+    validateEmployeeFormFromChange,
+    validateEmployeeFormFromSubmit,
+    validateProjectsFormFromChange,
+    validateProjectsFormFromSubmit,
 } from './js/validateForm';
-import { getLocalStorage } from './js/localStorage';
-import { renderTableProjects } from './js/renderTableProjects';
+import { getDateKey, getLocalStorage } from './js/localStorage';
+import { renderTableEmployees, renderTableProjects } from './js/renderTableProjects';
 
 const form = document.querySelector('.add-project-form');
+const formEmploee = document.querySelector('.add-employee-form');
 const data = getLocalStorage();
+const dateNow = getDateKey();
 
-renderTableProjects(data['2026-3']?.projects);
+renderTableProjects(data[dateNow]?.projects);
+renderTableEmployees(data[dateNow]?.employees);
 
 function init() {
     toggleAsideBar();
     activeButtonNav();
     initDate();
     panelControl();
-    validateFormFromChange(form);
-    validateFormFromSubmit(form);
+    validateProjectsFormFromChange(form);
+    validateProjectsFormFromSubmit(form);
 
     updateButtonState(form);
+    validateEmployeeFormFromChange(formEmploee);
+    validateEmployeeFormFromSubmit(formEmploee);
+
+    updateButtonState(formEmploee);
 }
 
 init();
