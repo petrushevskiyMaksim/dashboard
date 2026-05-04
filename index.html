@@ -235,7 +235,7 @@
         </section>
         <section class="add-employee-panel">
             <h2>Add New Employee</h2>
-            <form class="add-project-form">
+            <form class="add-employee-form">
                 <label for="employee-name" title="Employee Name"
                     >Employee Name:
                     <input
@@ -267,9 +267,37 @@
                         required
                 /></label>
 
-                <span class="error-message project-error-employee-surname"
-                    >Company name must be at least 2 characters</span
+                <span class="error-message project-error-employee-surname"></span>
+
+                <label for="dob" title="Date of Birth"
+                    >Date of Birth:<input
+                        class="dob"
+                        id="dob"
+                        name="dob"
+                        type="date"
+                        placeholder="Date of Birth"
+                        required
+                /></label>
+
+                <span class="error-message project-error-dob"></span>
+
+                <label for="position" title="Position"
+                    >Position:
+                    <select class="position" name="position" id="position" required>
+                        <option value="">Select position</option>
+                        <option value="junior">Junior</option>
+                        <option value="middle">Middle</option>
+                        <option value="senior">Senior</option>
+                        <option value="lead">Lead</option>
+                        <option value="architect">Architect</option>
+                        <option value="bo">BO</option>
+                    </select>
+                </label>
+
+                <span class="error-message project-error-position"
+                    >Budget must be greater than 0</span
                 >
+
                 <label for="salary" title="Salary"
                     >Salary:<input
                         class="salary"
