@@ -1,10 +1,9 @@
-import { renderTableProjects } from './renderTableProjects';
+import { renderTableEmployees, renderTableProjects } from './renderTableProjects';
 
 const LOCAL_STORAGE_KEY = 'monthlyDate';
 
 export const saveProjectToLocalStorage = (data) => {
     if (!data) return;
-    const dateKey = getDateKey();
 
     const project = {
         id: new Date().getTime(),
@@ -15,8 +14,10 @@ export const saveProjectToLocalStorage = (data) => {
         employees: [],
     };
 
-    const storageData = getLocalStorage();
+    const dateKey = getDateKey();
 
+    const storageData = getLocalStorage();
+    console.log(storageData[dateKey].projects);
     if (
         storageData[dateKey]?.projects &&
         storageData[dateKey]?.projects.length > 0 &&
@@ -30,15 +31,53 @@ export const saveProjectToLocalStorage = (data) => {
     }
 
     storageData[dateKey] = {
-        employees: [],
+        employees: [...(storageData[dateKey]?.employees || [])],
         projects: [],
     };
 
     storageData[dateKey].projects.push(project);
-
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(storageData));
-
     renderTableProjects(storageData[dateKey].projects);
+};
+
+export const saveEmployeeToLocalStorage = (data) => {
+    if (!data) return;
+
+    const employee = {
+        id: new Date().getTime(),
+        name: data['employee-name'],
+        surname: data['employee-surname'],
+        dob: data.dob,
+        salary: data.salary,
+        position: data.position,
+        assignments: [],
+    };
+
+    const dateKey = getDateKey();
+
+    const storageData = getLocalStorage();
+    console.log(storageData[dateKey]);
+
+    if (
+        storageData[dateKey]?.employees &&
+        storageData[dateKey]?.employees.length > 0 &&
+        Array.isArray(storageData[dateKey]?.employees)
+    ) {
+        storageData[dateKey].employees.push(employee);
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(storageData));
+        renderTableEmployees(storageData[dateKey].employees);
+
+        return;
+    }
+
+    storageData[dateKey] = {
+        employees: [],
+        projects: [...(storageData[dateKey]?.projects || [])],
+    };
+
+    storageData[dateKey].employees.push(employee);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(storageData));
+    renderTableEmployees(storageData[dateKey].employees);
 };
 
 export function getLocalStorage() {
@@ -48,7 +87,7 @@ export function getLocalStorage() {
     return storageData;
 }
 
-function getDateKey() {
+export function getDateKey() {
     const dateNow = new Date();
     const year = dateNow.getFullYear();
     const month = dateNow.getMonth();
