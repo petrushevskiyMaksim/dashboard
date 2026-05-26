@@ -13,6 +13,7 @@ import {
 } from './js/validateForm';
 import { getDateKey, getLocalStorage } from './js/localStorage';
 import { renderTableEmployees, renderTableProjects } from './js/renderTableProjects';
+import { filteredTableProjects } from './js/actionsTable';
 
 const form = document.querySelector('.add-project-form');
 const formEmploee = document.querySelector('.add-employee-form');
@@ -24,17 +25,23 @@ renderTableEmployees(data[dateNow]?.employees);
 
 function init() {
     toggleAsideBar();
+
     activeButtonNav();
+
     initDate();
+
     panelControl();
+
     validateProjectsFormFromChange(form);
     validateProjectsFormFromSubmit(form);
-
     updateButtonState(form);
+
     validateEmployeeFormFromChange(formEmploee);
     validateEmployeeFormFromSubmit(formEmploee);
 
     updateButtonState(formEmploee);
+
+    filteredTableProjects();
 }
 
 init();

@@ -1,6 +1,6 @@
 import { renderTableEmployees, renderTableProjects } from './renderTableProjects';
 
-const LOCAL_STORAGE_KEY = 'monthlyDate';
+export const LOCAL_STORAGE_KEY = 'monthlyDate';
 
 export const saveProjectToLocalStorage = (data) => {
     if (!data) return;
@@ -17,7 +17,6 @@ export const saveProjectToLocalStorage = (data) => {
     const dateKey = getDateKey();
 
     const storageData = getLocalStorage();
-    console.log(storageData[dateKey].projects);
     if (
         storageData[dateKey]?.projects &&
         storageData[dateKey]?.projects.length > 0 &&
@@ -56,7 +55,6 @@ export const saveEmployeeToLocalStorage = (data) => {
     const dateKey = getDateKey();
 
     const storageData = getLocalStorage();
-    console.log(storageData[dateKey]);
 
     if (
         storageData[dateKey]?.employees &&
@@ -92,5 +90,6 @@ export function getDateKey() {
     const year = dateNow.getFullYear();
     const month = dateNow.getMonth();
     const dateKey = `${year}-${month}`;
+
     return dateKey;
 }
