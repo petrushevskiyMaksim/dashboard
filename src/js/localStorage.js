@@ -1,5 +1,8 @@
 import { renderTableEmployees, renderTableProjects } from './renderTableProjects';
 
+const selectedMonth = document.querySelector('.month-select');
+const selectedYear = document.querySelector('.year-select');
+
 export const LOCAL_STORAGE_KEY = 'monthlyDate';
 
 export const saveProjectToLocalStorage = (data) => {
@@ -14,7 +17,7 @@ export const saveProjectToLocalStorage = (data) => {
         employees: [],
     };
 
-    const dateKey = getDateKey();
+    const dateKey = getSelectedDate();
 
     const storageData = getLocalStorage();
     if (
@@ -31,7 +34,7 @@ export const saveProjectToLocalStorage = (data) => {
 
     storageData[dateKey] = {
         employees: [...(storageData[dateKey]?.employees || [])],
-        projects: [],
+        projects: [...(storageData[dateKey]?.projects || [])],
     };
 
     storageData[dateKey].projects.push(project);
@@ -52,7 +55,7 @@ export const saveEmployeeToLocalStorage = (data) => {
         assignments: [],
     };
 
-    const dateKey = getDateKey();
+    const dateKey = getSelectedDate();
 
     const storageData = getLocalStorage();
 
@@ -69,7 +72,7 @@ export const saveEmployeeToLocalStorage = (data) => {
     }
 
     storageData[dateKey] = {
-        employees: [],
+        employees: [...(storageData[dateKey]?.employees || [])],
         projects: [...(storageData[dateKey]?.projects || [])],
     };
 
@@ -85,11 +88,21 @@ export function getLocalStorage() {
     return storageData;
 }
 
-export function getDateKey() {
+export function currentDate() {
     const dateNow = new Date();
     const year = dateNow.getFullYear();
     const month = dateNow.getMonth();
     const dateKey = `${year}-${month}`;
 
+    selectedMonth.value = month;
+    selectedYear.value = year;
+
     return dateKey;
+}
+
+export function getSelectedDate() {
+    const year = selectedYear.value;
+    const month = selectedMonth.value;
+
+    return `${year}-${month}`;
 }

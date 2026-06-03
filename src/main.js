@@ -11,14 +11,15 @@ import {
     validateProjectsFormFromChange,
     validateProjectsFormFromSubmit,
 } from './js/validateForm';
-import { getDateKey, getLocalStorage } from './js/localStorage';
+import { currentDate, getLocalStorage } from './js/localStorage';
 import { renderTableEmployees, renderTableProjects } from './js/renderTableProjects';
 import { filteredTableProjects } from './js/actionsTable';
 
 const form = document.querySelector('.add-project-form');
 const formEmploee = document.querySelector('.add-employee-form');
+
 const data = getLocalStorage();
-const dateNow = getDateKey();
+const dateNow = currentDate();
 
 renderTableProjects(data[dateNow]?.projects);
 renderTableEmployees(data[dateNow]?.employees);
@@ -28,7 +29,7 @@ function init() {
 
     activeButtonNav();
 
-    initDate();
+    currentDate();
 
     panelControl();
 
