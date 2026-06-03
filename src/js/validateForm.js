@@ -143,12 +143,6 @@ function showError(field, errorMessage) {
     const errorContainer = document.querySelector(`.project-error-${field}`);
     const input = document.querySelector(`.${field}`);
 
-    console.log('=== showError DEBUG ===');
-    console.log('field:', field);
-    console.log('errorMessage:', errorMessage);
-    console.log('errorContainer found:', errorContainer);
-    console.log('input found:', input);
-
     if (errorMessage) {
         errorContainer.textContent = errorMessage;
         errorContainer.style.opacity = '1';
